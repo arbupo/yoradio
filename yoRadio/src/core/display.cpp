@@ -104,6 +104,9 @@ void Display::init() {
 #if LIGHT_SENSOR!=255
   analogSetAttenuation(ADC_0db);
 #endif
+#if defined(ARDUINO_ESP32S3_DEV)
+  SPI.begin(TFT_SCK, -1, TFT_MOSI, TFT_CS);
+#endif
   _bootStep = 0;
   dsp.initDisplay();
   displayQueue=NULL;
